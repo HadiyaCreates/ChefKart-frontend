@@ -1,20 +1,21 @@
-
 // import React from "react";
 // import ContactLower from "./ContactLower";
 
 // const Contact = () => {
 //   return (
 //     <>
-//       {/* <section className="text-gray-600 body-font" style={{backgroundImage:URL(`https://thechefkart.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fchefkart-strapi-media%2FRectangle_60_bfb1e0017f_a37ee78af1.webp&w=1920&q=75`)}}> */}
 //       <section
-//   className="text-gray-600 body-font"
-//   style={{
-//     backgroundImage: "url('https://thechefkart.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fchefkart-strapi-media%2FRectangle_60_bfb1e0017f_a37ee78af1.webp&w=1920&q=75')"
-//   }}
-// >
-//         <div className="container px-5 py-24 mx-auto flex flex-wrap md:flex-nowrap gap-10">
+//         className="text-gray-600 body-font"
+//         style={{
+//           backgroundImage:
+//             "url('https://thechefkart.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fchefkart-strapi-media%2FRectangle_60_bfb1e0017f_a37ee78af1.webp&w=1920&q=75')",
+//           backgroundSize: "cover",
+//           backgroundPosition: "center",
+//         }}
+//       >
+//         <div className="container px-5 py-24 mx-auto flex flex-wrap md:flex-nowrap gap-10 justify-center">
 //           {/* Map Section */}
-//           <div className="lg:w-2/3 md:w-1/2 w-full bg-gray-300 rounded-lg overflow-hidden relative">
+//           <div className="w-full md:w-1/2 mt-[40px] lg:w-[35vw] bg-gray-300 rounded-lg overflow-hidden relative backdrop-blur-sm shadow-lg">
 //             <div className="w-full h-[450px] relative">
 //               <iframe
 //                 className="absolute inset-0 w-full h-full"
@@ -26,6 +27,7 @@
 //                 referrerPolicy="no-referrer-when-downgrade"
 //               ></iframe>
 //             </div>
+
 //             {/* Contact Details */}
 //             <div className="bg-white relative flex flex-wrap py-6 px-4 rounded shadow-md -mt-16 mx-4 z-10">
 //               <div className="w-full md:w-1/2 mb-4 md:mb-0">
@@ -53,7 +55,7 @@
 //           </div>
 
 //           {/* Contact Form */}
-//           <div className="lg:w-1/3 md:w-1/2 w-full bg-white p-6 rounded shadow-md">
+//           <div className="w-full md:w-1/2 mt-[40px] lg:w-[35vw] bg-white p-6 rounded shadow-md backdrop-blur-sm">
 //             <h2 className="text-gray-900 text-3xl font-bold text-center mb-4">
 //               Contact Us
 //             </h2>
@@ -134,9 +136,9 @@
 //                   className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-200"
 //                 ></textarea>
 //               </div>
-
+ 
+//                         {/* type="submit" */}
 //               <button
-//                 type="submit"
 //                 className="w-full bg-[#f81] hover:bg-[#e76f51] text-white py-2 px-4 rounded transition"
 //               >
 //                 Submit
@@ -152,10 +154,44 @@
 // };
 
 // export default Contact;
-import React from "react";
+import React, { useState } from "react";
 import ContactLower from "./ContactLower";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    city: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8000/contact/createContact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", phone: "", email: "", city: "", message: "" });
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong.");
+    }
+  };
+
   return (
     <>
       <section
@@ -217,7 +253,7 @@ const Contact = () => {
               Fill out the form or call us
             </p>
 
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="text-sm text-gray-600 block mb-1">
                   Name
@@ -226,6 +262,8 @@ const Contact = () => {
                   type="text"
                   id="name"
                   name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 />
               </div>
@@ -238,6 +276,8 @@ const Contact = () => {
                   type="tel"
                   id="phone"
                   name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 />
               </div>
@@ -250,6 +290,8 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 />
               </div>
@@ -261,8 +303,11 @@ const Contact = () => {
                 <select
                   id="city"
                   name="city"
+                  value={formData.city}
+                  onChange={handleChange}
                   className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 >
+                  <option value="">Select a city</option>
                   <option>Mumbai</option>
                   <option>Delhi</option>
                   <option>Bangalore</option>
@@ -286,6 +331,8 @@ const Contact = () => {
                   id="message"
                   name="message"
                   rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Please write your message in detail."
                   className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 ></textarea>

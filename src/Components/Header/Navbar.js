@@ -17,6 +17,7 @@ export default function Navbar() {
     { label: "Career", path: "/career" },
     { label: "Investor Relation", path: "/investor-relation" },
     { label: "Testimonials", path: "/testimonial" },
+    // { label: "Dashboard", path: "/dashboard" },
   ];
 
   return (
@@ -112,6 +113,11 @@ export default function Navbar() {
                 Join as Chef
               </button>
             </Link>
+            <Link to="/signup">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md font-semibold whitespace-nowrap">
+                SignUp
+              </button>
+            </Link>
           </div>
 
           <div
@@ -155,6 +161,11 @@ export default function Navbar() {
             <Link to="/register-chef" onClick={() => setIsOpen(false)}>
               <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 text-sm rounded-lg font-semibold shadow-sm transition duration-200 mt-2">
                 Join as Chef
+              </button>
+            </Link>
+            <Link to="/signup" onClick={() => setIsOpen(false)}>
+              <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 text-sm rounded-lg font-semibold shadow-sm transition duration-200 mt-2">
+                SignUp
               </button>
             </Link>
           </div>

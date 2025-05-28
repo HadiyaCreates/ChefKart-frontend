@@ -22,7 +22,12 @@ import ChefNear from "./Components/ChefNear/ChefNear";
 import Register from "./Components/ChefRegistration/Register";
 import ChefDetails from "./Components/ChefNear/ChefDetails";
 import ChefDirectory from "./Components/ChefNear/ChefDirectory";
+import Signup from "./Components/Signup";
+import Login from "./Components/Login";
+import CreateChef from "./Components/createchef";
+// import Dashboard from "../../ChefkartDashboard-main/src/App"
 // import Details from "./Components/Invest/Detail";
+
 const App = () => {
   return (
     <div>
@@ -47,9 +52,12 @@ const App = () => {
         <Route path="/detail/:id" element={<DetailPage/>} />
         <Route path="/investor-relation" element={<Invest/>} />
         <Route path="/cooks-near-me" element={<ChefNear/>} />
-        <Route path="/register-chef" element={<Register/>} />
+        <Route path="/register-chef" element={<CreateChef/>} />
         <Route path="/chef/:id" element={<ChefDetails/>} />
         <Route path="/chefs" element={<ChefDirectory/>} />
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="/login" element={<Login/>} />
+        {/* <Route path="/dashboard" element={<Dashboard/>} /> */}
          {/* <Route path="/invest/:id" element={<Details />} /> */}
        
       </Routes>
