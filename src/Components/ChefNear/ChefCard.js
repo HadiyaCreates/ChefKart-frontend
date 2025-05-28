@@ -1,7 +1,7 @@
 // src/components/ChefCard.jsx
 import React from "react";
 import { FaPhone, FaStar, FaClock } from "react-icons/fa";
-const ChefCard = ({ chef }) => {
+const ChefCard = ({ chef , onClick}) => {
   return (
     
     //     <div className="bg-white rounded-xl shadow p-4 flex gap-4 mb-6 items-center max-w-4xl">
@@ -30,7 +30,10 @@ const ChefCard = ({ chef }) => {
     //     VERIFIED
     //   </span>
     // </div>
-      <div className="bg-white rounded-xl shadow p-4 flex gap-4 mb-6 items-start max-w-4xl">
+      <div className="bg-white rounded-xl shadow p-4 flex gap-4 mb-6 items-start max-w-4xl
+      " 
+        onClick={onClick}
+      >
       {/* Image and badge container */}
       <div className="relative">
         <img

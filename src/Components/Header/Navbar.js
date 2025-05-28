@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { FaChevronDown, FaChevronRight, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { FaChevronDown, FaChevronRight, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,11 +12,11 @@ export default function Navbar() {
   };
 
   const drawerLinks = [
-    { label: 'About Us', path: '/about' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Career', path: '/career' },
-    { label: 'Investor Relation', path: '/investor-relation' },
-    { label: 'Testimonials', path: '/testimonial' },
+    { label: "About Us", path: "/about" },
+    { label: "Blog", path: "/blog" },
+    { label: "Career", path: "/career" },
+    { label: "Investor Relation", path: "/investor-relation" },
+    { label: "Testimonials", path: "/testimonial" },
   ];
 
   return (
@@ -38,11 +38,13 @@ export default function Navbar() {
             className="flex items-center w-[160px] mr-[-30px] space-x-1 cursor-pointer relative"
             onClick={handleServicesToggle}
           >
-            <span className="text-base sm:text-xl hover:text-[#f81]">Our Services</span>
+            <span className="text-base sm:text-xl hover:text-[#f81]">
+              Our Services
+            </span>
             <FaChevronDown
               size={12}
               className={`transition-transform duration-300 ${
-                showServicesDropdown ? 'rotate-180' : ''
+                showServicesDropdown ? "rotate-180" : ""
               }`}
             />
             {showServicesDropdown && (
@@ -79,20 +81,39 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <Link
-          to="/cooks-near-me"
-          >
-          <span className="cursor-pointer text-base sm:text-xl hover:text-[#f81]">Cooks Near Me</span>
-         </Link>
+          <Link to="/cooks-near-me">
+            <span className="cursor-pointer text-base sm:text-xl hover:text-[#f81]">
+              Cooks Near Me
+            </span>
+          </Link>
         </div>
 
         {/* Contact & Menu Icon */}
         <div className="flex items-center space-x-2 sm:space-x-4">
-          <Link to="/contact">
+          {/* <Link to="/contact">
             <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md font-semibold whitespace-nowrap">
               Contact Us
             </button>
           </Link>
+          <Link to="/contact">
+            <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md font-semibold whitespace-nowrap">
+              Register as a chef
+            </button>
+          </Link> */}
+          {/* Contact & Menu Icon */}
+          <div className="hidden md:flex items-center space-x-2 sm:space-x-4">
+            <Link to="/contact">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md font-semibold whitespace-nowrap">
+                Contact Us
+              </button>
+            </Link>
+            <Link to="/register-chef">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md font-semibold whitespace-nowrap">
+                Join as Chef
+              </button>
+            </Link>
+          </div>
+
           <div
             onClick={() => setIsOpen(true)}
             className="text-black p-1.5 sm:p-2 rounded-full cursor-pointer"
@@ -109,18 +130,35 @@ export default function Navbar() {
       {/* Drawer */}
       <div
         className={`fixed top-0 right-0 h-full w-full sm:w-72 bg-black bg-opacity-70 backdrop-blur-md text-white z-50 transform transition-transform duration-500 ease-in-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Close Button */}
         <div className="flex justify-end p-4">
-          <button onClick={() => setIsOpen(false)} className="text-white text-2xl">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-white text-2xl"
+          >
             <FaTimes />
           </button>
         </div>
 
         {/* Drawer Content */}
         <div className="flex flex-col justify-center h-[80%] px-6 space-y-6 text-lg font-bold">
+          {/* Mobile Buttons */}
+          <div className="block md:hidden px-6 pt-4">
+            <Link to="/contact" onClick={() => setIsOpen(false)}>
+              <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 text-sm rounded-lg font-semibold shadow-sm transition duration-200">
+                Contact Us
+              </button>
+            </Link>
+            <Link to="/register-chef" onClick={() => setIsOpen(false)}>
+              <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 text-sm rounded-lg font-semibold shadow-sm transition duration-200 mt-2">
+                Join as Chef
+              </button>
+            </Link>
+          </div>
+
           {/* Mobile-only Links */}
           <div className="block md:hidden space-y-3">
             {/* Our Services */}
@@ -133,7 +171,7 @@ export default function Navbar() {
                 <FaChevronDown
                   size={14}
                   className={`transition-transform duration-300 ${
-                    showDrawerServices ? 'rotate-180' : ''
+                    showDrawerServices ? "rotate-180" : ""
                   }`}
                 />
               </div>
@@ -186,7 +224,9 @@ export default function Navbar() {
               >
                 {link.label}
               </Link>
-              {idx !== drawerLinks.length - 1 && <hr className="my-3 border-white/20" />}
+              {idx !== drawerLinks.length - 1 && (
+                <hr className="my-3 border-white/20" />
+              )}
             </div>
           ))}
         </div>

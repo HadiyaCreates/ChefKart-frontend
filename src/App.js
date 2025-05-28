@@ -19,6 +19,9 @@ import DetailPage from "./Components/Blog/DetailPage";
 import Invest from "./Components/Invest/Invest";
 import FindCook from "./Components/Blog/FindCook/FindCook";
 import ChefNear from "./Components/ChefNear/ChefNear";
+import Register from "./Components/ChefRegistration/Register";
+import ChefDetails from "./Components/ChefNear/ChefDetails";
+import ChefDirectory from "./Components/ChefNear/ChefDirectory";
 // import Details from "./Components/Invest/Detail";
 const App = () => {
   return (
@@ -28,6 +31,7 @@ const App = () => {
       {/* <Contact/> */}
       <Routes>
         <Route path="/" element={<Home/>}/>
+     
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/join-chefkart" element={<ChefConnection/>} />
@@ -43,6 +47,9 @@ const App = () => {
         <Route path="/detail/:id" element={<DetailPage/>} />
         <Route path="/investor-relation" element={<Invest/>} />
         <Route path="/cooks-near-me" element={<ChefNear/>} />
+        <Route path="/register-chef" element={<Register/>} />
+        <Route path="/chef/:id" element={<ChefDetails/>} />
+        <Route path="/chefs" element={<ChefDirectory/>} />
          {/* <Route path="/invest/:id" element={<Details />} /> */}
        
       </Routes>
