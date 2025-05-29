@@ -10,7 +10,8 @@ const Testimonial = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/testimonial/get');
+        // const res = await axios.get('http://localhost:8000/testimonial/get');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/testimonial/get`);
         setTestimonials(res.data.data);
       } catch (err) {
         console.error("Failed to fetch testimonials:", err);

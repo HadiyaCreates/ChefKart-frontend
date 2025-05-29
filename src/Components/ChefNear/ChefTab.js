@@ -9,7 +9,8 @@ export default function ChefTab() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/chef/getAll");
+        // const response = await axios.get("http://localhost:8000/chef/getAll");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/chef/getAll`);
         const data = response.data;
 
         // Group by cuisine or region, or just use "All"

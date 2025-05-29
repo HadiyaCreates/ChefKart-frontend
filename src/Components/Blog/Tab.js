@@ -12,7 +12,8 @@ export default function Tab() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/blog/getAll");
+        // const response = await axios.get("http://localhost:8000/blog/getAll");
+       const response = await axios.get(`${process.env.REACT_APP_API_URL}/blog/getAll`);
         const data = response.data;
 
         // Group by category

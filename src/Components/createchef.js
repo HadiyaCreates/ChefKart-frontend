@@ -61,7 +61,8 @@ const CreateChefForm = () => {
     };
 
     try {
-      await axios.post("http://localhost:8000/chef/create", chefData);
+      // await axios.post("http://localhost:8000/chef/create", chefData);
+      await axios.post(`${process.env.REACT_APP_API_URL}/chef/create`, chefData);
       alert("Chef created successfully!");
       setFormData({
         name: "",

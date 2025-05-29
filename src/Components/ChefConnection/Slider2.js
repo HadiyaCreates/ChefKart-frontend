@@ -21,7 +21,8 @@ export default function Slider2() {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/crousel/get");
+        // const res = await axios.get("http://localhost:8000/crousel/get");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/crousel/get`);
         setSlides(res.data.data);
       } catch (error) {
         console.error("Failed to fetch carousel data:", error);
